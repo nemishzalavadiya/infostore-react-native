@@ -9,9 +9,7 @@ const STORAGE_PERMISSIONS = [
 const RootExternalStorageDirectoryPath = RNFS.ExternalStorageDirectoryPath
 
 const EXTERNAL_FILE_STORAGE_PATH =
-  RootExternalStorageDirectoryPath +
-  new Date().toLocaleDateString().replaceAll('/', '-') +
-  'data.json';
+  RootExternalStorageDirectoryPath + '/Infostore'
 
 export {
   STORAGE_PERMISSIONS,

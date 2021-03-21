@@ -1,18 +1,14 @@
-import RNFS from 'react-native-fs';
+import * as RNFS from 'react-native-fs'
 
-export default async function WriteInFile(filePath,message) {
+export default async function WriteInFile(folder, message, fileName = 'data.json') {
   try {
-    let success = await RNFS.writeFile(
-      filePath,
-      message,
-      'utf8',
-    )
-    if (success) {
-      console.log('FILE WRITTEN!',success)
-      return true;
-    }
+    await RNFS.mkdir(folder)
+    let file = folder + '/' + fileName;
+    console.log(file);
+    await RNFS.writeFile(file, message, 'utf8')
+    return true;
   } catch (err) {
-    console.log(err.message)
+    console.log('err me: ', err.message)
   }
-  return false;
+  return false
 }

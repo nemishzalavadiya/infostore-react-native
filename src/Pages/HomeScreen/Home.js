@@ -8,7 +8,6 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native'
-import GetDirectory from '../../Components/GetDirectory'
 import ToolBar from '../../Components/ToolBar'
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
     <SafeAreaView style={styles.safeView}>
       <StatusBar />
       <ToolBar name="Home" />
-      <GetDirectory/>
       <ScrollView style={styles.scrollViewStyle}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
           return <Text key={index}>My Home this containers Text</Text>
