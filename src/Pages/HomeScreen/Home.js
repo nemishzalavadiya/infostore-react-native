@@ -1,20 +1,31 @@
 import React from 'react'
-import { View, Text, Button, ScrollView } from 'react-native';
-
-const array = [1,2,3,4,5,6,7,8,9,10];
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
+} from 'react-native'
+import ToolBar from '../../Components/ToolBar'
 
 export default function Home() {
   console.log('in to Home component')
   return (
-    <View>
-      <ScrollView>
-        {
-          [...array,...array,...array,...array,...array,...array].map((item,index)=>{
-            return <Text key={index}>My Home this containers Text</Text>
-          })
-        }
-        <Button title="go to show notes" color="blue"></Button>
+    <SafeAreaView style={styles.safeView}>
+      <StatusBar  />
+      <ToolBar name="Home" />
+      <ScrollView style={styles.scrollViewStyle}>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+          return <Text key={index}>My Home this containers Text</Text>
+        })}
+        <View style={{ height: 100 }} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
+const styles = StyleSheet.create({
+  safeView: { margin: 5 },
+  scrollViewStyle: {},
+})
