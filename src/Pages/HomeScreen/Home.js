@@ -11,10 +11,9 @@ import {
 import ToolBar from '../../Components/ToolBar'
 
 export default function Home() {
-  console.log('in to Home component')
   return (
     <SafeAreaView style={styles.safeView}>
-      <StatusBar  />
+      <StatusBar />
       <ToolBar name="Home" />
       <ScrollView style={styles.scrollViewStyle}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
@@ -27,5 +26,5 @@ export default function Home() {
 }
 const styles = StyleSheet.create({
   safeView: { margin: 5 },
-  scrollViewStyle: {},
+  scrollViewStyle: { margin: 10 },
 })

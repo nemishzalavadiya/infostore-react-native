@@ -26,5 +26,5 @@ export default function Show() {
 }
 const styles = StyleSheet.create({
   safeView: { margin: 5 },
-  scrollViewStyle: {},
+  scrollViewStyle: { margin: 10 },
 })

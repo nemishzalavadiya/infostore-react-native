@@ -1,6 +1,6 @@
 import React from 'react'
 import { DrawerActions, useNavigation } from '@react-navigation/native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import {
   StyleSheet,
   Text,
@@ -18,7 +18,7 @@ export default function ToolBar(props) {
           onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
           style={styles.IconPosition}
         >
-          <MaterialCommunityIcons name="hamburger" size={30} color="black" />
+          <Ionicons name="ios-reorder-three-sharp" size={35} color="black" />
         </TouchableOpacity>
       </View>
       <View style={styles.Title}>
