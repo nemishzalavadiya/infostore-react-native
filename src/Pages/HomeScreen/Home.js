@@ -9,6 +9,8 @@ import {
   StatusBar,
 } from 'react-native'
 import ToolBar from '../../Components/ToolBar'
+import AddNoteForm from '../../Components/AddNoteForm'
+
 
 export default function Home() {
   return (
@@ -16,9 +18,7 @@ export default function Home() {
       <StatusBar />
       <ToolBar name="Home" />
       <ScrollView style={styles.scrollViewStyle}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
-          return <Text key={index}>My Home this containers Text</Text>
-        })}
+        <AddNoteForm />
         <View style={{ height: 100 }} />
       </ScrollView>
     </SafeAreaView>

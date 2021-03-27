@@ -11,8 +11,11 @@ const RootExternalStorageDirectoryPath = RNFS.ExternalStorageDirectoryPath
 const EXTERNAL_FILE_STORAGE_PATH =
   RootExternalStorageDirectoryPath + '/Infostore'
 
+const NOTES_FOLDER = 'NOTES'
+
 export {
   STORAGE_PERMISSIONS,
   RootExternalStorageDirectoryPath,
   EXTERNAL_FILE_STORAGE_PATH,
+  NOTES_FOLDER
 }

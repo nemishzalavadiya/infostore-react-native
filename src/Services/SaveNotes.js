@@ -20,5 +20,5 @@ export default async function saveNotes(props) {
       props.file,
     )
   }
-  return result
+  return !!result
 }
