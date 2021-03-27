@@ -34,8 +34,14 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
+.idea
+
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
+
+build/
+
+.gradle
 
 # Dependency directories
 node_modules/
@@ -67,6 +73,8 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+
+.expo
 
 # dotenv environment variables file
 .env
@@ -102,3 +110,5 @@ dist
 
 # TernJS port file
 .tern-port
+
+.DS_Store
