@@ -1,14 +1,19 @@
 import React from 'react'
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons'
 
 export default function ShowNotes(props) {
-  if(props.content?.length===0){
-    return <View style={styles.emptyContainer}><FontAwesome5 name="sticky-note" size={24} color="black" /><Text>Add Some Notes</Text></View>
+  if (props.content?.length === 0) {
+    return (
+      <View style={styles.emptyContainer}>
+        <FontAwesome5 name="sticky-note" size={24} color="black" />
+        <Text>Add Some Notes</Text>
+      </View>
+    )
   }
   return (
-    <View>
+    <View style={styles.container}>
       {Array.isArray(props.content) &&
         props.content.map((item, index) => {
           return (
@@ -33,7 +38,9 @@ export default function ShowNotes(props) {
                   />
                 </View>
               </View>
-              <Text style={styles.note}>{item.note}</Text>
+              <View>
+                <Text style={styles.note}>{item.note}</Text>
+              </View>
             </View>
           )
         })}
@@ -42,11 +49,14 @@ export default function ShowNotes(props) {
 }
 
 const styles = StyleSheet.create({
-  emptyContainer:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    height:Dimensions.get('window').height/2
+  container: {
+    padding: 5,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: Dimensions.get('window').height / 2,
   },
   titleContainer: {
     flex: 1,
@@ -65,13 +75,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
-    fontSize: 15
+    fontSize: 15,
   },
   myCard: {
     margin: 10,
     padding: 10,
-    borderColor: 'black',
-    borderWidth: 2,
-    height: 100,
+    borderRadius: 10,
+    elevation: 100,
+    backgroundColor:'white'
   },
 })
