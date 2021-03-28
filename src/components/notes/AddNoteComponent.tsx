@@ -6,16 +6,17 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import { IAddProps } from 'src/interface'
 
-export default function AddNote(props) {
+export default function AddNote({ addProps }: IAddProps) {
   return (
     <ScrollView>
       <View style={styles.noteConatiner}>
         <TextInput
           style={styles.noteTitle}
           placeholder='Title'
-          onChangeText={props.setTitle}
-          value={props.title}
+          onChangeText={addProps.setTitle}
+          value={addProps.title}
           textAlign='center'
         />
         <View style={styles.textAreaContainer}>
@@ -27,15 +28,15 @@ export default function AddNote(props) {
             numberOfLines={10}
             multiline={true}
             textAlignVertical='top'
-            onChangeText={props.setNote}
-            value={props.note}
+            onChangeText={addProps.setNote}
+            value={addProps.note}
           />
         </View>
       </View>
       <View style={styles.buttonContainer}>
         <Button
           title='submit'
-          onPress={props.saveData}
+          onPress={addProps.saveData}
         />
       </View>
     </ScrollView>

@@ -2,9 +2,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import { IShowProps } from 'src/interface'
 
-export default function ShowNotes(props) {
-  if (props.content?.length === 0) {
+export default function ShowNotes({ showProps }: IShowProps) {
+  if (showProps.content?.length === 0) {
     return (
       <View style={styles.emptyContainer}>
         <FontAwesome5 name='sticky-note' size={24} color='black' />
@@ -14,8 +15,8 @@ export default function ShowNotes(props) {
   }
   return (
     <View style={styles.container}>
-      {Array.isArray(props.content) &&
-        props.content.map((item, index) => {
+      {Array.isArray(showProps.content) &&
+        showProps.content.map((item, index) => {
           return (
             <View key={index} style={styles.myCard}>
               <View style={styles.titleContainer}>
@@ -35,7 +36,7 @@ export default function ShowNotes(props) {
                     size={30}
                     color='black'
                     // tslint:disable-next-line: jsx-no-lambda
-                    onPress={() => props.removeNote(item.path)}
+                    onPress={() => showProps.removeNote(item.path)}
                   />
                 </View>
               </View>

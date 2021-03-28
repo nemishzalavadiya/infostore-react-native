@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { IToolBar } from 'src/interface'
 
-export default function ToolBarComponent(props) {
+export default function ToolBarComponent({ name }: IToolBar) {
   const navigation = useNavigation()
 
   const toggleNavigationDrawer = () => {
@@ -26,7 +27,7 @@ export default function ToolBarComponent(props) {
         </TouchableOpacity>
       </View>
       <View style={styles.Title}>
-        <Text style={styles.TextStyle}>{props.name}</Text>
+        <Text style={styles.TextStyle}>{name}</Text>
       </View>
     </View>
   )

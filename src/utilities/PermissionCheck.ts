@@ -1,10 +1,11 @@
-import { checkMultiple, request, RESULTS } from 'react-native-permissions'
+import { checkMultiple, Permission, request, RESULTS } from 'react-native-permissions'
 
-export default async function PermissionCheck(listOfPermisions) {
+export default async function PermissionCheck(listOfPermisions: Permission[]) {
   let finalResult = true
   try {
     const results = await checkMultiple(listOfPermisions)
-    Object.keys(results).forEach(async (permission) => {
+
+    for (const permission of listOfPermisions) {
       if (results[permission] !== RESULTS.GRANTED) {
         const result = await request(permission)
         if (result === RESULTS.GRANTED) {
@@ -17,7 +18,7 @@ export default async function PermissionCheck(listOfPermisions) {
       } else {
         finalResult = finalResult && true
       }
-    })
+    }
     return finalResult
   } catch (error) {
     console.error('PermissionCheck raise issue: ', error)

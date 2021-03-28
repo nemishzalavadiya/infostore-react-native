@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import { sha256 } from 'react-native-sha256'
+import { IAddNoteProps, INoteContent, ISaveNoteProps, IShowNoteProps } from 'src/interface'
 import { NOTES_FOLDER } from '../../helper/Constant'
 import getAllNotes from '../../utilities/notes/getAllNotes'
 import removeNote from '../../utilities/notes/removeNote'
@@ -16,22 +17,32 @@ import AddNote from './AddNoteComponent'
 import ShowNotes from './ShowNotesComponent'
 
 export default function AddNoteForm() {
-  const [title, setTitle] = React.useState(null)
-  const [note, setNote] = React.useState(null)
-  const [content, setContent] = React.useState([])
-  const [add, setAdd] = React.useState(false)
+  const [title, setTitle] = React.useState<string>('')
+  const [note, setNote] = React.useState<string>('')
+  const [content, setContent] = React.useState<INoteContent[]>([])
+  const [add, setAdd] = React.useState<boolean>(false)
 
   async function getNotes() {
-    const notesContent = await getAllNotes()
+    const notesContent: INoteContent[] = await getAllNotes()
     setContent(notesContent)
   }
-  async function removeThisNote(path) {
+  async function removeThisNote(path: string) {
     const status = await removeNote(path)
     if (status) {
       getNotes()
     }
   }
-
+  const noteProps: IAddNoteProps = {
+    title,
+    note,
+    setTitle,
+    setNote,
+    saveData,
+  }
+  const showProps: IShowNoteProps = {
+    content,
+    removeNote: removeThisNote,
+  }
   React.useEffect(() => {
     getNotes()
   }, [])
@@ -40,14 +51,17 @@ export default function AddNoteForm() {
     if (note && title) {
       const formContent = JSON.stringify({ title, note })
       const fileName = await sha256(formContent)
-      const status = await saveNote({
+
+      const saveProps: ISaveNoteProps = {
         folder: NOTES_FOLDER,
         file: `${fileName}`,
         message: formContent,
-      })
+      }
+
+      const status = await saveNote({saveProps})
       if (status) {
-        setTitle(null)
-        setNote(null)
+        setTitle('')
+        setNote('')
         getNotes()
         ToastAndroid.show('Successfully Added', ToastAndroid.LONG)
       } else {
@@ -59,17 +73,13 @@ export default function AddNoteForm() {
   }
   return (
     <ScrollView>
-      <View style={{flex: 1, flexDirection: 'row', marginBottom: 10}}><Text style={{alignSelf: 'center'}}>Add Note: </Text><Switch onValueChange={setAdd} value={add} /></View>
+      <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}><Text style={{ alignSelf: 'center' }}>Add Note: </Text><Switch onValueChange={setAdd} value={add} /></View>
       {add ? (
         <AddNote
-          title={title}
-          note={note}
-          setTitle={setTitle}
-          setNote={setNote}
-          saveData={saveData}
+          addProps={noteProps}
         />
       ) : (
-        <ShowNotes content={content} removeNote={removeThisNote} />
+        <ShowNotes showProps={showProps} />
       )}
     </ScrollView>
   )
