@@ -7,8 +7,8 @@ export default async function WriteInFile(folder, message, fileName = 'data.json
     console.log(file);
     await RNFS.writeFile(file, message, 'utf8')
     return true;
-  } catch (err) {
-    console.log('err me: ', err.message)
+  } catch (error) {
+    console.error('WriteInFile raise issue: ', error)
   }
   return false
 }

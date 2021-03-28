@@ -20,7 +20,7 @@ export default async function PermissionCheck(listOfPermisions) {
     })
     return finalResult
   } catch (error) {
-    console.log('error occured: ', error)
+    console.error('PermissionCheck raise issue: ', error)
   }
   return false
 }

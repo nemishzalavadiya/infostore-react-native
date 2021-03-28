@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
-export default function ToolBar(props) {
+export default function ToolBarComponent(props) {
   const navigation = useNavigation()
   return (
     <View style={styles.TitleBar}>

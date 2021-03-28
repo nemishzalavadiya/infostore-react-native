@@ -1,8 +1,7 @@
-import React from 'react'
 import RNFS from 'react-native-fs'
-import { EXTERNAL_FILE_STORAGE_PATH, NOTES_FOLDER } from '../Constant'
+import { EXTERNAL_FILE_STORAGE_PATH, NOTES_FOLDER } from '../../helper/Constant'
 
-export default async function getNotesFromNotes() {
+export default async function getAllNotes() {
   let data = []
   try {
     let files = await RNFS.readDir(
@@ -16,9 +15,8 @@ export default async function getNotesFromNotes() {
         data.push(fileObject)
       }
     }
-    return data
-  } catch (err) {
-    console.log('err while fetching :', err)
-    return data
+  } catch (error) {
+    console.error('err while fetching :', error)
   }
+  return data
 }

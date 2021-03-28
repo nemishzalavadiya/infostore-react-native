@@ -2,21 +2,18 @@ import React from 'react'
 import {
   View,
   ScrollView,
-  TextInput,
-  StyleSheet,
   ToastAndroid,
-  Button,
   Text,
   Switch,
 } from 'react-native'
 
-import saveNotes from '../Services/SaveNotes'
+import saveNote from '../../utilities/notes/SaveNote'
 import { sha256 } from 'react-native-sha256'
-import { NOTES_FOLDER } from '../Constant'
-import getNotesFromNotes from '../Services/getNotesFromNotes'
-import ShowNotes from './ShowNotes'
-import removeNote from '../Services/removeNote'
-import AddNote from './AddNote'
+import { NOTES_FOLDER } from '../../helper/Constant'
+import getAllNotes from '../../utilities/notes/getAllNotes'
+import ShowNotes from './ShowNotesComponent'
+import removeNote from '../../utilities/notes/removeNote'
+import AddNote from './AddNoteComponent'
 
 export default function AddNoteForm() {
   const [title, setTitle] = React.useState(null)
@@ -25,7 +22,7 @@ export default function AddNoteForm() {
   const [add, setAdd] = React.useState(false)
 
   async function getNotes() {
-    let content = await getNotesFromNotes()
+    let content = await getAllNotes()
     setContent(content)
   }
   async function removeThisNote(path) {
@@ -43,7 +40,7 @@ export default function AddNoteForm() {
     if (note && title) {
       let formContent = JSON.stringify({ title: title, note: note })
       let fileName = await sha256(formContent)
-      let status = await saveNotes({
+      let status = await saveNote({
         folder: NOTES_FOLDER,
         file: `${fileName}`,
         message: formContent,
