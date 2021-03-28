@@ -1,11 +1,11 @@
 import React from 'react'
 import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
   SafeAreaView,
+  ScrollView,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native'
 import ToolBarComponent from '../components/ToolBarComponent'
 
@@ -13,7 +13,7 @@ export default function Show() {
   return (
     <SafeAreaView style={styles.safeView}>
       <StatusBar />
-      <ToolBarComponent name="Show" />
+      <ToolBarComponent name='Show' />
       <ScrollView style={styles.scrollViewStyle}>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
           return <Text key={index}>My Home this containers Text</Text>

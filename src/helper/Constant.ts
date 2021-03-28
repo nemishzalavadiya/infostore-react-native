@@ -1,5 +1,5 @@
-import { PERMISSIONS } from 'react-native-permissions'
 import RNFS from 'react-native-fs'
+import { PERMISSIONS } from 'react-native-permissions'
 
 const STORAGE_PERMISSIONS = [
   PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
@@ -17,5 +17,5 @@ export {
   STORAGE_PERMISSIONS,
   RootExternalStorageDirectoryPath,
   EXTERNAL_FILE_STORAGE_PATH,
-  NOTES_FOLDER
+  NOTES_FOLDER,
 }

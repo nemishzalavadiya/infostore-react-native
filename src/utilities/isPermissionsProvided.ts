@@ -3,7 +3,7 @@ import PermissionCheck from './PermissionCheck'
 
 export default async function isPermissionProvided() {
   try {
-    let result = await PermissionCheck(STORAGE_PERMISSIONS)
+    const result = await PermissionCheck(STORAGE_PERMISSIONS)
     console.log('permission result: ', result)
     return result
   } catch (error) {

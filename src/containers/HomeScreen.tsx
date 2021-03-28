@@ -1,20 +1,19 @@
 import React from 'react'
 import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
   StyleSheet,
   View,
-  ScrollView,
-  SafeAreaView,
-  StatusBar,
 } from 'react-native'
-import ToolBarComponent from '../components/ToolBarComponent'
 import AddNoteForm from '../components/notes/NotesComponent'
-
+import ToolBarComponent from '../components/ToolBarComponent'
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeView}>
       <StatusBar />
-      <ToolBarComponent name="Home" />
+      <ToolBarComponent name='Home' />
       <ScrollView style={styles.scrollViewStyle}>
         <AddNoteForm />
         <View style={{ height: 100 }} />

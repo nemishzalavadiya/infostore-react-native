@@ -1,13 +1,13 @@
-import React from 'react'
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons'
+import React from 'react'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 
 export default function ShowNotes(props) {
   if (props.content?.length === 0) {
     return (
       <View style={styles.emptyContainer}>
-        <FontAwesome5 name="sticky-note" size={24} color="black" />
+        <FontAwesome5 name='sticky-note' size={24} color='black' />
         <Text>Add Some Notes</Text>
       </View>
     )
@@ -31,9 +31,10 @@ export default function ShowNotes(props) {
                 </View>
                 <View style={styles.icon}>
                   <MaterialCommunityIcons
-                    name="delete-circle"
+                    name='delete-circle'
                     size={30}
-                    color="black"
+                    color='black'
+                    // tslint:disable-next-line: jsx-no-lambda
                     onPress={() => props.removeNote(item.path)}
                   />
                 </View>
@@ -82,6 +83,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     elevation: 100,
-    backgroundColor:'white'
+    backgroundColor: 'white',
   },
 })

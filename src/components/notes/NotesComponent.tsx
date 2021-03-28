@@ -1,19 +1,19 @@
 import React from 'react'
 import {
-  View,
   ScrollView,
-  ToastAndroid,
-  Text,
   Switch,
+  Text,
+  ToastAndroid,
+  View,
 } from 'react-native'
 
-import saveNote from '../../utilities/notes/SaveNote'
 import { sha256 } from 'react-native-sha256'
 import { NOTES_FOLDER } from '../../helper/Constant'
 import getAllNotes from '../../utilities/notes/getAllNotes'
-import ShowNotes from './ShowNotesComponent'
 import removeNote from '../../utilities/notes/removeNote'
+import saveNote from '../../utilities/notes/SaveNote'
 import AddNote from './AddNoteComponent'
+import ShowNotes from './ShowNotesComponent'
 
 export default function AddNoteForm() {
   const [title, setTitle] = React.useState(null)
@@ -22,11 +22,11 @@ export default function AddNoteForm() {
   const [add, setAdd] = React.useState(false)
 
   async function getNotes() {
-    let content = await getAllNotes()
-    setContent(content)
+    const notesContent = await getAllNotes()
+    setContent(notesContent)
   }
   async function removeThisNote(path) {
-    let status = await removeNote(path)
+    const status = await removeNote(path)
     if (status) {
       getNotes()
     }
@@ -38,9 +38,9 @@ export default function AddNoteForm() {
 
   async function saveData() {
     if (note && title) {
-      let formContent = JSON.stringify({ title: title, note: note })
-      let fileName = await sha256(formContent)
-      let status = await saveNote({
+      const formContent = JSON.stringify({ title, note })
+      const fileName = await sha256(formContent)
+      const status = await saveNote({
         folder: NOTES_FOLDER,
         file: `${fileName}`,
         message: formContent,
@@ -59,7 +59,7 @@ export default function AddNoteForm() {
   }
   return (
     <ScrollView>
-      <View style={{flex:1,flexDirection:'row',marginBottom:10}}><Text style={{alignSelf:'center'}}>Add Note: </Text><Switch onValueChange={setAdd} value={add} /></View>
+      <View style={{flex: 1, flexDirection: 'row', marginBottom: 10}}><Text style={{alignSelf: 'center'}}>Add Note: </Text><Switch onValueChange={setAdd} value={add} /></View>
       {add ? (
         <AddNote
           title={title}
