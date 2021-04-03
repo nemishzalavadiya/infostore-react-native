@@ -31,7 +31,7 @@ export default function AddNote({ addProps }: IAddProps) {
       <View style={styles.buttonContainer}>
         <Button
           color='rgb(100,150,255)'
-          title='submit'
+          title='Add Note'
           onPress={addProps.saveData}
         />
       </View>

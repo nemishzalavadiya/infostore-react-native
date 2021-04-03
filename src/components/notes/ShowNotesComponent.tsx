@@ -14,42 +14,39 @@ export default function ShowNotes({ showProps }: IShowProps) {
     )
   }
   return (
-    <ScrollView>
-
-      <View style={styles.container}>
-        {Array.isArray(showProps.content) &&
-          showProps.content.map((item, index) => {
-            return (
-              <View key={index} style={styles.myCard}>
-                <View style={styles.titleContainer}>
-                  <View style={styles.title}>
-                    <Text
-                      style={{
-                        fontSize: 20,
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      {item.title}
-                    </Text>
-                  </View>
-                  <View style={styles.icon}>
-                    <MaterialCommunityIcons
-                      name='delete-circle'
-                      size={30}
-                      color='black'
-                      // tslint:disable-next-line: jsx-no-lambda
-                      onPress={() => showProps.removeNote(item.path)}
-                    />
-                  </View>
+    <View style={styles.container}>
+      {Array.isArray(showProps.content) &&
+        showProps.content.map((item, index) => {
+          return (
+            <View key={index} style={styles.myCard}>
+              <View style={styles.titleContainer}>
+                <View style={styles.title}>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {item.title}
+                  </Text>
                 </View>
-                <View>
-                  <Text style={styles.note}>{item.note}</Text>
+                <View style={styles.icon}>
+                  <MaterialCommunityIcons
+                    name='delete-circle'
+                    size={30}
+                    color='black'
+                    // tslint:disable-next-line: jsx-no-lambda
+                    onPress={() => showProps.removeNote(item.path)}
+                  />
                 </View>
               </View>
-            )
-          })}
-      </View>
-    </ScrollView>
+              <View>
+                <Text style={styles.note}>{item.note}</Text>
+              </View>
+            </View>
+          )
+        })}
+    </View>
   )
 }
 
@@ -71,8 +68,12 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: 'center',
     justifyContent: 'center',
+    marginBottom: 20,
   },
   icon: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
     alignSelf: 'center',
     justifyContent: 'flex-end',
   },
@@ -83,10 +84,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   myCard: {
-    margin: 10,
+    marginBottom: 10,
     padding: 10,
     borderRadius: 10,
-    elevation: 100,
     backgroundColor: 'white',
   },
 })
