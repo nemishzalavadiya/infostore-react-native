@@ -73,7 +73,7 @@ export default function AddNoteForm() {
   }
   return (
     <View>
-      <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}><Text style={{ alignSelf: 'center' }}>Add Note: </Text><Switch onValueChange={setAdd} value={add} /></View>
+      <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, marginLeft: 5 }}><Text style={{ alignSelf: 'center' }}>Add Note: </Text><Switch onValueChange={setAdd} value={add} /></View>
       {add ? (
         <AddNote
           addProps={noteProps}

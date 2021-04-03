@@ -22,6 +22,6 @@ export default function HomeScreen() {
   )
 }
 const styles = StyleSheet.create({
-  safeView: { margin: 5 },
-  scrollViewStyle: { margin: 10 },
+  safeView: { marginTop: 5, marginBottom: 5 },
+  scrollViewStyle: { marginTop: 10, marginBottom: 10 },
 })

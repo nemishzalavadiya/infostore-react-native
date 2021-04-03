@@ -27,7 +27,7 @@ export default function ShowNotes({ showProps }: IShowProps) {
                       fontWeight: 'bold',
                     }}
                   >
-                    {item.title}
+                    {item.title.trim()}
                   </Text>
                 </View>
                 <View style={styles.icon}>
@@ -41,7 +41,7 @@ export default function ShowNotes({ showProps }: IShowProps) {
                 </View>
               </View>
               <View>
-                <Text style={styles.note}>{item.note}</Text>
+                <Text style={styles.note}>{item.note.trim()}</Text>
               </View>
             </View>
           )
@@ -88,5 +88,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     backgroundColor: 'white',
+    marginLeft: 5,
+    marginRight: 5,
   },
 })
