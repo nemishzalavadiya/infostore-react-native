@@ -3,9 +3,6 @@
         "tslint-react-recommended"
     ],
     "rules": {
-        "ordered-imports": [
-            true
-        ],
         "quotemark": [
             true,
             "single",
@@ -17,9 +14,6 @@
             "never"
         ],
         "member-access": [
-            false
-        ],
-        "member-ordering": [
             false
         ],
         "trailing-comma": [
