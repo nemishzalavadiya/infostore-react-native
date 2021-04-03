@@ -58,7 +58,7 @@ export default function AddNoteForm() {
         message: formContent,
       }
 
-      const status = await saveNote({saveProps})
+      const status = await saveNote({ saveProps })
       if (status) {
         setTitle('')
         setNote('')
@@ -72,7 +72,7 @@ export default function AddNoteForm() {
     }
   }
   return (
-    <ScrollView>
+    <View>
       <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}><Text style={{ alignSelf: 'center' }}>Add Note: </Text><Switch onValueChange={setAdd} value={add} /></View>
       {add ? (
         <AddNote
@@ -81,6 +81,6 @@ export default function AddNoteForm() {
       ) : (
         <ShowNotes showProps={showProps} />
       )}
-    </ScrollView>
+    </View>
   )
 }

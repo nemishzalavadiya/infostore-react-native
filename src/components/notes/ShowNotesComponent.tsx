@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons'
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View, ScrollView } from 'react-native'
 import { IShowProps } from 'src/interface'
 
 export default function ShowNotes({ showProps }: IShowProps) {
@@ -14,39 +14,42 @@ export default function ShowNotes({ showProps }: IShowProps) {
     )
   }
   return (
-    <View style={styles.container}>
-      {Array.isArray(showProps.content) &&
-        showProps.content.map((item, index) => {
-          return (
-            <View key={index} style={styles.myCard}>
-              <View style={styles.titleContainer}>
-                <View style={styles.title}>
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {item.title}
-                  </Text>
+    <ScrollView>
+
+      <View style={styles.container}>
+        {Array.isArray(showProps.content) &&
+          showProps.content.map((item, index) => {
+            return (
+              <View key={index} style={styles.myCard}>
+                <View style={styles.titleContainer}>
+                  <View style={styles.title}>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {item.title}
+                    </Text>
+                  </View>
+                  <View style={styles.icon}>
+                    <MaterialCommunityIcons
+                      name='delete-circle'
+                      size={30}
+                      color='black'
+                      // tslint:disable-next-line: jsx-no-lambda
+                      onPress={() => showProps.removeNote(item.path)}
+                    />
+                  </View>
                 </View>
-                <View style={styles.icon}>
-                  <MaterialCommunityIcons
-                    name='delete-circle'
-                    size={30}
-                    color='black'
-                    // tslint:disable-next-line: jsx-no-lambda
-                    onPress={() => showProps.removeNote(item.path)}
-                  />
+                <View>
+                  <Text style={styles.note}>{item.note}</Text>
                 </View>
               </View>
-              <View>
-                <Text style={styles.note}>{item.note}</Text>
-              </View>
-            </View>
-          )
-        })}
-    </View>
+            )
+          })}
+      </View>
+    </ScrollView>
   )
 }
 

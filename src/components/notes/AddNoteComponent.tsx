@@ -1,75 +1,77 @@
 import React from 'react'
 import {
   Button,
-  ScrollView,
   StyleSheet,
   TextInput,
   View,
 } from 'react-native'
 import { IAddProps } from 'src/interface'
+import Textarea from 'react-native-textarea'
 
 export default function AddNote({ addProps }: IAddProps) {
   return (
-    <ScrollView>
-      <View style={styles.noteConatiner}>
-        <TextInput
-          style={styles.noteTitle}
-          placeholder='Title'
-          onChangeText={addProps.setTitle}
-          value={addProps.title}
-          textAlign='center'
-        />
-        <View style={styles.textAreaContainer}>
-          <TextInput
-            style={styles.textArea}
-            underlineColorAndroid='transparent'
-            placeholder='Type something'
-            placeholderTextColor='grey'
-            numberOfLines={10}
-            multiline={true}
-            textAlignVertical='top'
-            onChangeText={addProps.setNote}
-            value={addProps.note}
-          />
-        </View>
-      </View>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.title}
+        placeholder='Title'
+        onChangeText={addProps.setTitle}
+        value={addProps.title}
+        textAlign='center'
+      />
+      <Textarea
+        containerStyle={styles.textareaContainer}
+        style={styles.textarea}
+        underlineColorAndroid='transparent'
+        placeholder='Type Something'
+        placeholderTextColor={'#c7c7c7'}
+        textAlignVertical='top'
+        onChangeText={addProps.setNote}
+        value={addProps.note}
+      />
       <View style={styles.buttonContainer}>
         <Button
+          color='rgb(100,150,255)'
           title='submit'
           onPress={addProps.saveData}
         />
       </View>
-    </ScrollView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  noteConatiner: {
-    height: 400,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  noteTitle: {
+  title: {
+    width: '100%',
     borderColor: 'grey',
     fontSize: 20,
     borderWidth: 1,
     padding: 5,
-    borderRadius: 100,
+    backgroundColor: '#F5FCFF',
   },
-  textAreaContainer: {
+  textareaContainer: {
+    height: 480,
+    backgroundColor: '#F5FCFF',
     marginTop: 10,
-    borderColor: 'grey',
     borderWidth: 1,
-    padding: 5,
-    borderRadius: 20,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
+    padding : 10,
   },
-  textArea: {
-    height: '100%',
-    lineHeight: 15,
-    fontSize: 20,
-    margin: 10,
+  textarea: {
+    textAlignVertical: 'top',  // hack android
+    height: 480,
+    fontSize: 18,
+    color: '#333',
   },
   buttonContainer: {
-    marginTop: 100,
+    marginTop: 10,
+    width: '50%',
+    borderColor: 'rgb(100,150,255)',
+    borderWidth: 6,
+    borderRadius: 10,
+    shadowOffset: { width: 10 , height: 10 },
   },
 })
