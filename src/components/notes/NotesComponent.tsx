@@ -1,15 +1,12 @@
 import React from 'react'
 import {
-  ScrollView,
   Switch,
   Text,
   ToastAndroid,
   View,
 } from 'react-native'
 
-import { sha256 } from 'react-native-sha256'
-import { IAddNoteProps, INoteContent, ISaveNoteProps, IShowNoteProps } from 'src/interface'
-import { NOTES_FOLDER } from '../../helper/Constant'
+import { IAddNoteProps, INoteContent, IShowNoteProps } from 'src/interface'
 import getAllNotes from '../../utilities/notes/getAllNotes'
 import removeNote from '../../utilities/notes/removeNote'
 import saveNote from '../../utilities/notes/saveNote'
