@@ -2,6 +2,10 @@
 
 This app provides support to store info efficiently for future use.
 
+# clean React native cache
+
+cd android && ./gradlew cleanBuildCache
+
 # create APK
 
 ![APK](https://medium.com/@hasangi/making-a-signed-apk-for-your-react-native-application-98e8529678db)
