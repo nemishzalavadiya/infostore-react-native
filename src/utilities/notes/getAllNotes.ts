@@ -3,9 +3,14 @@ import { EXTERNAL_FILE_STORAGE_PATH, NOTES_FOLDER } from '../../helper/Constant'
 
 export default async function getAllNotes() {
   const data = []
+  const noteFolder = `${EXTERNAL_FILE_STORAGE_PATH}/${NOTES_FOLDER}`
   try {
+    const isNoteFolderExist = await RNFS.exists(noteFolder)
+    if (!isNoteFolderExist) {
+      return []
+    }
     const files = await RNFS.readDir(
-      `${EXTERNAL_FILE_STORAGE_PATH}/${NOTES_FOLDER}`,
+      noteFolder,
     )
     for (const file of files) {
       if (file.isFile()) {
