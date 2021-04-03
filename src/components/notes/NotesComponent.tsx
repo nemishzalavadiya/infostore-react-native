@@ -12,7 +12,7 @@ import { IAddNoteProps, INoteContent, ISaveNoteProps, IShowNoteProps } from 'src
 import { NOTES_FOLDER } from '../../helper/Constant'
 import getAllNotes from '../../utilities/notes/getAllNotes'
 import removeNote from '../../utilities/notes/removeNote'
-import saveNote from '../../utilities/notes/SaveNote'
+import saveNote from '../../utilities/notes/saveNote'
 import AddNote from './AddNoteComponent'
 import ShowNotes from './ShowNotesComponent'
 
@@ -49,16 +49,11 @@ export default function AddNoteForm() {
 
   async function saveData() {
     if (note && title) {
-      const formContent = JSON.stringify({ title, note })
-      const fileName = await sha256(formContent)
-
-      const saveProps: ISaveNoteProps = {
-        folder: NOTES_FOLDER,
-        file: `${fileName}`,
-        message: formContent,
+      const noteData: IAddNoteProps = {
+        note,
+        title,
       }
-
-      const status = await saveNote({ saveProps })
+      const status = await saveNote(noteData)
       if (status) {
         setTitle('')
         setNote('')

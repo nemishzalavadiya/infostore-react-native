@@ -1,9 +1,9 @@
 interface IAddNoteProps {
   title: string,
   note: string,
-  setTitle: (arg0: string) => void,
-  setNote: (arg0: string) => void,
-  saveData: (arg0: any) => void
+  setTitle?: (arg0: string) => void,
+  setNote?: (arg0: string) => void,
+  saveData?: (arg0: any) => void
 }
 
 interface IAddProps {
@@ -13,7 +13,8 @@ interface IAddProps {
 interface INoteContent {
   title: string,
   note: string,
-  path: string
+  path: string,
+  date: string,
 }
 
 interface IShowNoteProps {

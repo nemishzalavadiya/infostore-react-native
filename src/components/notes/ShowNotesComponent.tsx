@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons'
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View, ScrollView } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { IShowProps } from 'src/interface'
 
 export default function ShowNotes({ showProps }: IShowProps) {
@@ -17,9 +17,15 @@ export default function ShowNotes({ showProps }: IShowProps) {
     <View style={styles.container}>
       {Array.isArray(showProps.content) &&
         showProps.content.map((item, index) => {
+          const dateObj = String(new Date(item.date))
           return (
             <View key={index} style={styles.myCard}>
               <View style={styles.titleContainer}>
+                <View style={styles.titleDate}>
+                  {item.date ? <Text>
+                    {`${dateObj.split(' ')[1]} ${dateObj.split(' ')[2]},${dateObj.split(' ')[3]}`}
+                  </Text> : null}
+                </View>
                 <View style={styles.title}>
                   <Text
                     style={{
@@ -64,6 +70,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  titleDate: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
   },
   title: {
     alignSelf: 'center',
