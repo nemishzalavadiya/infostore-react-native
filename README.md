@@ -101,3 +101,11 @@ android {
 # More Helpful article to create signed apk
 
 https://www.instamobile.io/android-development/generate-react-native-release-build-android/
+
+
+react-native bundle --platform android --dev false \
+  --entry-file index.js \
+  --bundle-output android/app/src/main/assets/index.android.bundle \
+  --assets-dest android/app/build/intermediates/res/merged/release/
+
+cd android && ./gradlew assembleRelease
