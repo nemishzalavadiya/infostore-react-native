@@ -103,9 +103,32 @@ android {
 https://www.instamobile.io/android-development/generate-react-native-release-build-android/
 
 
-react-native bundle --platform android --dev false \
-  --entry-file index.js \
-  --bundle-output android/app/src/main/assets/index.android.bundle \
-  --assets-dest android/app/build/intermediates/res/merged/release/
 
-cd android && ./gradlew assembleRelease
+
+
+
+# Problems & Solutions
+
+1. mergeRelease problem:
+    delete BUILD folders from android & android/app
+    delete drawable and raw folders from res
+
+2. processRelease problem:
+    add EXPO_UPDATE_URL to the AndroidManifest.xml
+
+3. use `adb logcat > log.txt` to check for the android errors
+
+4. clean and rebuild
+    A. cd android && gradlew clean
+
+    B. react-native bundle --platform android --dev false \
+        --entry-file index.js \
+        --bundle-output android/app/src/main/assets/index.android.bundle \
+        --assets-dest android/app/build/intermediates/res/merged/release/
+
+    C. cd android && ./gradlew assembleRelease
+
+5. Expo users
+
+    A. must use `expo login` before expo eject
+        must check that expo had added UPDATE URL to the androidmanifest.xml
