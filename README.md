@@ -97,3 +97,7 @@ android {
     
 }
 ```
+
+# More Helpful article to create signed apk
+
+https://www.instamobile.io/android-development/generate-react-native-release-build-android/
