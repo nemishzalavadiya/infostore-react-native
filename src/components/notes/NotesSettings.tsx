@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, ScrollView, Text, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { INoteModel } from 'src/interface'
 import Modal from 'react-native-modal'
 
 const NotesSettings = ({ noteModel }: INoteModel) => {
-  const [isSelected, setSelection] = useState(false)
   const close = () => { noteModel.setOpen(false) }
   const edit = () => {
     noteModel.setTitle(noteModel.item.title)

@@ -1,4 +1,3 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'

@@ -4,8 +4,6 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
-  View,
 } from 'react-native'
 import ToolBarComponent from '../components/ToolBarComponent'
 
