@@ -20,12 +20,12 @@ export default function ShowNotes({ showProps }: IShowProps) {
           const dateObj = String(new Date(item.date))
           return (
             <View key={index} style={styles.myCard}>
-              <View style={styles.titleContainer}>
-                <View style={styles.titleDate}>
+              <View style={styles.titleDate}>
                   {item.date ? <Text>
                     {`${dateObj.split(' ')[1]} ${dateObj.split(' ')[2]},${dateObj.split(' ')[3]}`}
                   </Text> : null}
                 </View>
+              <View style={styles.titleContainer}>
                 <View style={styles.title}>
                   <Text
                     style={{
@@ -36,7 +36,8 @@ export default function ShowNotes({ showProps }: IShowProps) {
                     {item.title.trim()}
                   </Text>
                 </View>
-                <View style={styles.icon}>
+              </View>
+              <View style={styles.icon}>
                   <MaterialCommunityIcons
                     name='delete-circle'
                     size={30}
@@ -45,7 +46,6 @@ export default function ShowNotes({ showProps }: IShowProps) {
                     onPress={() => showProps.removeNote(item.path)}
                   />
                 </View>
-              </View>
               <View>
                 <Text style={styles.note}>{item.note.trim()}</Text>
               </View>
@@ -67,24 +67,25 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height / 2,
   },
   titleContainer: {
+    marginTop: 25,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   titleDate: {
     position: 'absolute',
-    left: 0,
-    top: 0,
+    left: 10,
+    top: 5,
   },
   title: {
-    alignSelf: 'center',
+    alignSelf: 'flex-end',
     justifyContent: 'center',
     marginBottom: 20,
   },
   icon: {
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: 10,
+    top: 5,
     alignSelf: 'center',
     justifyContent: 'flex-end',
   },

@@ -18,6 +18,7 @@ export default function AddNote({ addProps }: IAddProps) {
         onChangeText={addProps.setTitle}
         value={addProps.title}
         textAlign='center'
+        maxLength={100}
       />
       <Textarea
         containerStyle={styles.textareaContainer}
