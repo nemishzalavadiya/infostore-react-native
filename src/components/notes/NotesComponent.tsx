@@ -52,6 +52,9 @@ export default function AddNoteForm() {
       const noteData: IAddNoteProps = {
         note,
         title,
+        setTitle,
+        setNote,
+        saveData,
       }
       const status = await saveNote(noteData)
       if (status) {

@@ -1,13 +1,29 @@
 import React, { useState } from 'react'
-import { View, ScrollView, Text, Button, StyleSheet, TouchableOpacity, CheckBox } from 'react-native'
+import { View, ScrollView, Text, Button, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import { INoteModel } from 'src/interface'
 import Modal from 'react-native-modal'
 
 const NotesSettings = ({ noteModel }: INoteModel) => {
   const [isSelected, setSelection] = useState(false)
   const close = () => { noteModel.setOpen(false) }
-  const edit = () => { alert('Clicked..') }
-  const deleteNote = () => { alert('Clicked..') }
+  const edit = () => {
+    noteModel.setTitle(noteModel.item.title)
+    noteModel.setNote(noteModel.item.note)
+    noteModel.removeNote(noteModel.item.path)
+    noteModel.setAdd(true)
+  }
+  const deleteNote = () => {
+    Alert.alert(
+      'Delete',
+      'Confirm Deletion',
+      [
+        {
+          text: 'Cancel',
+        },
+        { text: 'OK', onPress: () => { noteModel.setOpen(false); noteModel.removeNote(noteModel.item.path) } },
+      ],
+    )
+  }
   return <View>
     <Modal isVisible={noteModel.isOpen}>
       <ScrollView style={{ margin: 20 }}>
@@ -15,12 +31,6 @@ const NotesSettings = ({ noteModel }: INoteModel) => {
         <TouchableOpacity style={[styles.listTile, styles.background]} onPress={deleteNote} >
           <View style={styles.delete}>
             <Text style={{ color: 'white' }}>Delete</Text>
-            <View style={styles.checkboxContainer}>
-            <CheckBox
-              value={isSelected}
-              onValueChange={setSelection}
-            />
-            </View>
           </View>
         </TouchableOpacity>
       </ScrollView>

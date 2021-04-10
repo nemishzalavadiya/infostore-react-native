@@ -15,10 +15,6 @@ export default function Show() {
       <StatusBar />
       <ToolBarComponent name='Show' />
       <ScrollView style={styles.scrollViewStyle}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
-          return <Text key={index}>My Home this containers Text</Text>
-        })}
-        <View style={{ height: 100 }} />
       </ScrollView>
     </SafeAreaView>
   )

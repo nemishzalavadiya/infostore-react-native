@@ -2,23 +2,29 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import { IShowProps, INoteModelProperties } from 'src/interface'
+import { IShowProps, INoteModelProperties, INoteContent } from 'src/interface'
 import NotesSettings from './NotesSettings'
-import { TouchableOpacity} from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export default function ShowNotes({ showProps }: IShowProps) {
-  const [isModelOpen, setModelOpen] = useState(false)
-
+  const [isModelOpen, setModelOpen] = useState<boolean>(false)
+  const [itemState, setItem] = useState<INoteContent>({
+    title: '',
+    note: '',
+    path: '',
+    date: '',
+  })
   const noteModelProperties: INoteModelProperties = {
     isOpen: isModelOpen,
     setOpen: setModelOpen,
+    item: itemState,
     removeNote: showProps.removeNote,
     setAdd: showProps.setAdd,
     setNote: showProps.setNote,
     setTitle: showProps.setTitle,
   }
 
-  const onLongPress = () => { setModelOpen(true) }
+  const onLongPress = (noteItem: INoteContent) => { setModelOpen(true); setItem(noteItem) }
 
   if (isModelOpen) {
     return <NotesSettings noteModel={noteModelProperties} />
@@ -38,7 +44,7 @@ export default function ShowNotes({ showProps }: IShowProps) {
         showProps.content.map((item, index) => {
           const dateObj = String(new Date(item.date))
           return (
-            <TouchableOpacity key={index} onLongPress={onLongPress} activeOpacity={0.8}>
+            <TouchableOpacity key={index} onLongPress={() => onLongPress(item)} activeOpacity={0.8}>
               <View key={index} style={styles.myCard}>
                 <View style={styles.titleDate}>
                   {item.date ? <Text>
@@ -56,15 +62,6 @@ export default function ShowNotes({ showProps }: IShowProps) {
                       {item.title.trim()}
                     </Text>
                   </View>
-                </View>
-                <View style={styles.icon}>
-                  <MaterialCommunityIcons
-                    name='delete-circle'
-                    size={30}
-                    color='black'
-                    // tslint:disable-next-line: jsx-no-lambda
-                    onPress={() => showProps.removeNote(item.path)}
-                  />
                 </View>
                 <View>
                   <Text style={styles.note}>{item.note.trim()}</Text>
@@ -102,13 +99,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     justifyContent: 'center',
     marginBottom: 20,
-  },
-  icon: {
-    position: 'absolute',
-    right: 10,
-    top: 5,
-    alignSelf: 'center',
-    justifyContent: 'flex-end',
   },
   note: {
     marginTop: 10,

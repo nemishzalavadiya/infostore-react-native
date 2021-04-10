@@ -1,9 +1,9 @@
 interface IAddNoteProps {
   title: string,
   note: string,
-  setTitle?: (arg0: string) => void,
-  setNote?: (arg0: string) => void,
-  saveData?: (arg0: any) => void
+  setTitle: (arg0: string) => void,
+  setNote: (arg0: string) => void,
+  saveData: (arg0: any) => void
 }
 
 interface IAddProps {
@@ -20,9 +20,9 @@ interface INoteContent {
 interface IShowNoteProps {
   content: INoteContent[],
   removeNote: (arg0: string) => Promise<void>,
-  setTitle?: (arg0: string) => void,
-  setNote?: (arg0: string) => void,
-  setAdd?: (arg0: boolean) => void,
+  setTitle: (arg0: string) => void,
+  setNote: (arg0: string) => void,
+  setAdd: (arg0: boolean) => void,
 }
 
 interface IShowProps {
@@ -44,12 +44,13 @@ interface IToolBar {
 }
 
 interface INoteModelProperties {
-  isOpen: boolean
+  isOpen: boolean,
   setOpen: (arg0: boolean) => void,
   removeNote: (arg0: string) => Promise<void>,
-  setTitle?: (arg0: string) => void,
-  setNote?: (arg0: string) => void,
-  setAdd?: (arg0: boolean) => void,
+  setTitle: (arg0: string) => void,
+  setNote: (arg0: string) => void,
+  setAdd: (arg0: boolean) => void,
+  item: INoteContent,
 }
 
 interface INoteModel {
