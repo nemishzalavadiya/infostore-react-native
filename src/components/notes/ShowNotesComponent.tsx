@@ -1,10 +1,29 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { FontAwesome5 } from '@expo/vector-icons'
-import React from 'react'
+import React, { useState } from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import { IShowProps } from 'src/interface'
+import { IShowProps, INoteModelProperties } from 'src/interface'
+import NotesSettings from './NotesSettings'
+import { TouchableOpacity} from 'react-native-gesture-handler'
 
 export default function ShowNotes({ showProps }: IShowProps) {
+  const [isModelOpen, setModelOpen] = useState(false)
+
+  const noteModelProperties: INoteModelProperties = {
+    isOpen: isModelOpen,
+    setOpen: setModelOpen,
+    removeNote: showProps.removeNote,
+    setAdd: showProps.setAdd,
+    setNote: showProps.setNote,
+    setTitle: showProps.setTitle,
+  }
+
+  const onLongPress = () => { setModelOpen(true) }
+
+  if (isModelOpen) {
+    return <NotesSettings noteModel={noteModelProperties} />
+  }
+
   if (showProps.content?.length === 0) {
     return (
       <View style={styles.emptyContainer}>
@@ -19,25 +38,26 @@ export default function ShowNotes({ showProps }: IShowProps) {
         showProps.content.map((item, index) => {
           const dateObj = String(new Date(item.date))
           return (
-            <View key={index} style={styles.myCard}>
-              <View style={styles.titleDate}>
+            <TouchableOpacity key={index} onLongPress={onLongPress} activeOpacity={0.8}>
+              <View key={index} style={styles.myCard}>
+                <View style={styles.titleDate}>
                   {item.date ? <Text>
                     {`${dateObj.split(' ')[1]} ${dateObj.split(' ')[2]},${dateObj.split(' ')[3]}`}
                   </Text> : null}
                 </View>
-              <View style={styles.titleContainer}>
-                <View style={styles.title}>
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {item.title.trim()}
-                  </Text>
+                <View style={styles.titleContainer}>
+                  <View style={styles.title}>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {item.title.trim()}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-              <View style={styles.icon}>
+                <View style={styles.icon}>
                   <MaterialCommunityIcons
                     name='delete-circle'
                     size={30}
@@ -46,10 +66,11 @@ export default function ShowNotes({ showProps }: IShowProps) {
                     onPress={() => showProps.removeNote(item.path)}
                   />
                 </View>
-              <View>
-                <Text style={styles.note}>{item.note.trim()}</Text>
+                <View>
+                  <Text style={styles.note}>{item.note.trim()}</Text>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
           )
         })}
     </View>

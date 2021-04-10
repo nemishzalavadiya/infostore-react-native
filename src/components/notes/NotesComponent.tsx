@@ -39,6 +39,9 @@ export default function AddNoteForm() {
   const showProps: IShowNoteProps = {
     content,
     removeNote: removeThisNote,
+    setTitle,
+    setNote,
+    setAdd,
   }
   React.useEffect(() => {
     getNotes()

@@ -20,6 +20,9 @@ interface INoteContent {
 interface IShowNoteProps {
   content: INoteContent[],
   removeNote: (arg0: string) => Promise<void>,
+  setTitle?: (arg0: string) => void,
+  setNote?: (arg0: string) => void,
+  setAdd?: (arg0: boolean) => void,
 }
 
 interface IShowProps {
@@ -40,4 +43,16 @@ interface IToolBar {
   name: string
 }
 
-export { IToolBar, IAddProps, IAddNoteProps, IShowNoteProps, IShowProps, INoteContent, ISaveProps, ISaveNoteProps }
+interface INoteModelProperties {
+  isOpen: boolean
+  setOpen: (arg0: boolean) => void,
+  removeNote: (arg0: string) => Promise<void>,
+  setTitle?: (arg0: string) => void,
+  setNote?: (arg0: string) => void,
+  setAdd?: (arg0: boolean) => void,
+}
+
+interface INoteModel {
+  noteModel: INoteModelProperties
+}
+export { IToolBar, INoteModel, INoteModelProperties, IAddProps, IAddNoteProps, IShowNoteProps, IShowProps, INoteContent, ISaveProps, ISaveNoteProps }
