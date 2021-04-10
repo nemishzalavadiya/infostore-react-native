@@ -56,4 +56,14 @@ interface INoteModelProperties {
 interface INoteModel {
   noteModel: INoteModelProperties
 }
-export { IToolBar, INoteModel, INoteModelProperties, IAddProps, IAddNoteProps, IShowNoteProps, IShowProps, INoteContent, ISaveProps, ISaveNoteProps }
+
+interface IRightBar {
+  isShow: boolean,
+  setShow: (arg0: boolean) => void,
+}
+
+interface IRightBarContainer {
+  rightBar: IRightBar,
+}
+
+export { IRightBarContainer, IRightBar, IToolBar, INoteModel, INoteModelProperties, IAddProps, IAddNoteProps, IShowNoteProps, IShowProps, INoteContent, ISaveProps, ISaveNoteProps }
