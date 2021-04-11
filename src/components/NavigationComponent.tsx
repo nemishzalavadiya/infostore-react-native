@@ -4,16 +4,16 @@ import React from 'react'
 import HomeScreen from '../containers/HomeScreen'
 import ShowScreen from '../containers/ShowScreen'
 
-const Stack = createDrawerNavigator()
+const Drawer = createDrawerNavigator()
 
 export default function NavigationComponent() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name='Home' component={HomeScreen} />
-          <Stack.Screen name='Show' component={ShowScreen} />
-        </Stack.Navigator>
+        <Drawer.Navigator initialRouteName='Home' >
+          <Drawer.Screen name='Home' component={HomeScreen} />
+          <Drawer.Screen name='Show' component={ShowScreen} />
+        </Drawer.Navigator>
       </NavigationContainer>
     </>
   )
