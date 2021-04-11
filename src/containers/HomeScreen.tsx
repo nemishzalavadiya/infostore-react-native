@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   SafeAreaView,
   ScrollView,
@@ -10,12 +10,15 @@ import AddNoteForm from '../components/notes/NotesComponent'
 import ToolBarComponent from '../components/ToolBarComponent'
 
 export default function HomeScreen() {
+  const [action, setAction] = useState('show')
   return (
     <SafeAreaView style={styles.safeView}>
       <StatusBar />
       <ToolBarComponent name='Home' />
       <ScrollView style={styles.scrollViewStyle}>
-        <AddNoteForm />
+        {
+          action === 'show' ? <AddNoteForm /> : null
+        }
         <View style={{ height: 100 }} />
       </ScrollView>
     </SafeAreaView>
